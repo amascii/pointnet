@@ -39,7 +39,8 @@ def _variable_with_weight_decay(name, shape, stddev, wd, use_xavier=True):
     Variable Tensor
   """
   if use_xavier:
-    initializer = tf.contrib.layers.xavier_initializer()
+    #initializer = tf.contrib.layers.xavier_initializer()
+    initializer = tf.initializers.glorot_uniform()
   else:
     initializer = tf.truncated_normal_initializer(stddev=stddev)
   var = _variable_on_cpu(name, shape, initializer)

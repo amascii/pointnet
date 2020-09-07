@@ -44,7 +44,7 @@ def input_transform_net(point_cloud, is_training, bn_decay=None, K=3):
         biases = tf.get_variable('biases', [3*K],
                                  initializer=tf.constant_initializer(0.0),
                                  dtype=tf.float32)
-        biases += tf.constant([1,0,0,0,1,0,0,0,1], dtype=tf.float32)
+        biases = biases + tf.constant([1,0,0,0,1,0,0,0,1], dtype=tf.float32)
         transform = tf.matmul(net, weights)
         transform = tf.nn.bias_add(transform, biases)
 
@@ -87,7 +87,7 @@ def feature_transform_net(inputs, is_training, bn_decay=None, K=64):
         biases = tf.get_variable('biases', [K*K],
                                  initializer=tf.constant_initializer(0.0),
                                  dtype=tf.float32)
-        biases += tf.constant(np.eye(K).flatten(), dtype=tf.float32)
+        biases = biases + tf.constant(np.eye(K).flatten(), dtype=tf.float32)
         transform = tf.matmul(net, weights)
         transform = tf.nn.bias_add(transform, biases)
 
