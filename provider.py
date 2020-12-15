@@ -89,7 +89,7 @@ def getDataFiles(list_filename):
 
 def load_h5(h5_filename):
     # change dir if in google colab
-    f = h5py.File('' + h5_filename, 'r')
+    f = h5py.File('pointnet-test/' + h5_filename, 'r')
     data = f['data'][:]
     label = f['label'][:]
     return (data, label)
